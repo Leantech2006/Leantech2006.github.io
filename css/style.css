@@ -402,6 +402,21 @@ section {
   margin-bottom: 12px;
 }
 
+.map-embed {
+  margin: 16px 0 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(3, 7, 18, 0.5);
+}
+
+.map-embed iframe {
+  width: 100%;
+  min-height: 260px;
+  filter: contrast(1.05) saturate(0.85);
+}
+
+
 .contact-location {
   color: var(--text-secondary);
   margin: 8px 0 12px;
