@@ -227,6 +227,17 @@ section {
   font-size: 0.9rem;
 }
 
+.hero-keywords {
+  color: var(--text-secondary);
+  margin-top: 16px;
+  font-size: 0.95rem;
+}
+
+.hero-keywords a {
+  color: var(--brand);
+  font-weight: 600;
+}
+
 .hero-card {
   background: rgba(15, 23, 42, 0.8);
   border: 1px solid var(--border);
@@ -389,6 +400,18 @@ section {
 
 .contact-info li {
   margin-bottom: 12px;
+}
+
+.contact-location {
+  color: var(--text-secondary);
+  margin: 8px 0 12px;
+}
+
+.contact-map {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--brand);
+  font-weight: 600;
 }
 
 .contact-form {
