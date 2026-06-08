@@ -27,6 +27,7 @@ body {
   color: var(--text-primary);
   background: var(--bg-dark);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 img {
@@ -592,6 +593,16 @@ section {
   }
 }
 
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 900px) {
   .navbar {
     flex-wrap: wrap;
@@ -658,6 +669,33 @@ section {
   .btn-whatsapp-floating {
     right: 16px;
     bottom: 16px;
+  }
+
+  .contact-form button {
+    width: 100%;
+  }
+}
+
+/* Respeita preferência de movimento reduzido (acessibilidade + bateria mobile) */
+@media (prefers-reduced-motion: reduce) {
+  .about-card,
+  .service-card,
+  .portfolio-card,
+  .ai-card,
+  .hero-card {
+    animation: none;
+    border: 1.5px solid var(--border);
+    background: var(--bg-card);
+  }
+
+  .hero-card {
+    background: rgba(11, 18, 33, 0.96);
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
