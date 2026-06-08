@@ -177,6 +177,11 @@ section {
   white-space: nowrap;
 }
 
+.btn-outline:hover {
+  background: rgba(0, 192, 255, 0.1);
+  transform: translateY(-1px);
+}
+
 .hero-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -195,9 +200,9 @@ section {
 }
 
 .hero-text h1 {
-  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
   margin-bottom: 16px;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .lead {
@@ -239,10 +244,30 @@ section {
 }
 
 .hero-card {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid var(--border);
+  background:
+    linear-gradient(rgba(11, 18, 33, 0.96), rgba(11, 18, 33, 0.96)) padding-box,
+    conic-gradient(
+      from var(--neon-angle),
+      transparent 0%,
+      transparent 55%,
+      rgba(0, 192, 255, 0.6) 68%,
+      rgba(29, 78, 216, 0.8) 78%,
+      rgba(0, 192, 255, 0.6) 87%,
+      transparent 95%
+    ) border-box;
+  border: 1.5px solid transparent;
   border-radius: 24px;
   padding: 32px;
+  animation: neon-spin 5s linear infinite;
+}
+
+.hero-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 16px;
 }
 
 .hero-card ul {
@@ -262,7 +287,10 @@ section {
 
 .hero-highlight strong {
   font-size: 2rem;
-  color: var(--brand);
+  background: linear-gradient(120deg, var(--brand), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   display: block;
 }
 
@@ -313,10 +341,29 @@ section {
 .about-card,
 .service-card,
 .portfolio-card {
-  background: var(--bg-card);
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    conic-gradient(
+      from var(--neon-angle),
+      transparent 0%,
+      transparent 65%,
+      rgba(0, 192, 255, 0.35) 75%,
+      rgba(29, 78, 216, 0.55) 83%,
+      rgba(0, 192, 255, 0.35) 91%,
+      transparent 97%
+    ) border-box;
+  border: 1.5px solid transparent;
   border-radius: 24px;
   padding: 24px;
-  border: 1px solid var(--border);
+  animation: neon-spin 8s linear infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-card:hover,
+.service-card:hover,
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 32px rgba(0, 192, 255, 0.12);
 }
 
 .about-card ul {
@@ -325,7 +372,19 @@ section {
 }
 
 .services-grid {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .service-card h3 {
@@ -337,10 +396,27 @@ section {
 }
 
 .ai-card {
-  background: var(--bg-card);
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    conic-gradient(
+      from var(--neon-angle),
+      transparent 0%,
+      transparent 65%,
+      rgba(0, 192, 255, 0.35) 75%,
+      rgba(29, 78, 216, 0.55) 83%,
+      rgba(0, 192, 255, 0.35) 91%,
+      transparent 97%
+    ) border-box;
+  border: 1.5px solid transparent;
   border-radius: 24px;
   padding: 24px;
-  border: 1px solid var(--border);
+  animation: neon-spin 9s linear infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ai-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 32px rgba(0, 192, 255, 0.12);
 }
 
 .ai-card ul {
@@ -444,6 +520,12 @@ section {
   background: rgba(15, 23, 42, 0.8);
   color: var(--text-primary);
   font-family: inherit;
+  font-size: 1rem;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(203, 213, 245, 0.45);
 }
 
 .contact-form input:focus,
@@ -577,4 +659,43 @@ section {
     right: 16px;
     bottom: 16px;
   }
+}
+
+/* ===== Neon rotating border ===== */
+@property --neon-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes neon-spin {
+  to { --neon-angle: 360deg; }
+}
+
+/* Stagger start angles so cards don't all pulse in sync */
+.service-card:nth-child(2)  { animation-delay: -2s; }
+.service-card:nth-child(3)  { animation-delay: -4s; }
+.service-card:nth-child(4)  { animation-delay: -6s; }
+.service-card:nth-child(5)  { animation-delay: -1.5s; }
+.service-card:nth-child(6)  { animation-delay: -3.5s; }
+.service-card:nth-child(7)  { animation-delay: -5.5s; }
+.service-card:nth-child(8)  { animation-delay: -7s; }
+.about-card:nth-child(2)    { animation-delay: -3s; }
+.about-card:nth-child(3)    { animation-delay: -6s; }
+.ai-card:nth-child(2)       { animation-delay: -3s; }
+.ai-card:nth-child(3)       { animation-delay: -6s; }
+.portfolio-card:nth-child(2){ animation-delay: -2.5s; }
+.portfolio-card:nth-child(3){ animation-delay: -5s; }
+.portfolio-card:nth-child(4){ animation-delay: -7.5s; }
+
+/* ===== Scroll reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
